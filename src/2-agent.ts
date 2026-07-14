@@ -4,8 +4,8 @@
 //   ask the model -> it picks a tool -> we run it -> feed the result back -> repeat
 // ...until the model produces a Final Answer.
 //
-// This is the complete, working reference. Step 3 asks you to rebuild the loop
-// yourself and add a tool.
+// WORKSHOP: fill in the loop body (TODO 2) by copying from the Notion handbook
+// ("动手环节"). Reference solution: `git checkout main` (src/2-agent.ts).
 //
 // Run:  npm run step2
 
@@ -54,20 +54,15 @@ async function runAgent(task: string, maxSteps = 6): Promise<string> {
   ];
 
   for (let step = 0; step < maxSteps; step++) {
-    // Stop before "Observation:" so the model can't hallucinate tool results.
-    const output = await chat(messages, { stop: ["Observation:"] });
-    console.log(`\n--- Step ${step + 1} ---\n${output}`);
-    messages.push({ role: "assistant", content: output });
-
-    const final = parseFinal(output);
-    if (final) return final;
-
-    const action = parseAction(output);
-    if (!action) return "No action and no final answer; stopping.";
-
-    const observation = await runTool(action.tool, action.input);
-    console.log(`Observation: ${observation}`);
-    messages.push({ role: "user", content: `Observation: ${observation}` });
+    // --- TODO 2: implement one turn of the loop --------------------------------
+    // 1. Call the model with `messages` (use stop: ["Observation:"] so it can't
+    //    hallucinate a tool result).
+    // 2. Print the output and append it to `messages` as an assistant message.
+    // 3. If parseFinal(output) returns something, return it.
+    // 4. Otherwise parseAction(output); if none, stop. Run the tool with runTool,
+    //    print the observation, and append `Observation: <result>` as a user message.
+    // ---------------------------------------------------------------------------
+    throw new Error("TODO 2: implement the agent loop, then delete this line.");
   }
 
   return "Reached max steps without a final answer.";

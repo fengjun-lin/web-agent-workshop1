@@ -1,38 +1,25 @@
 // Tools are the agent's "hands and senses": plain functions the model can call by name.
 // The model itself only produces text; tools let it read the world and take actions.
+//
+// WORKSHOP: fill in the `tools` object below by copying from the Notion handbook
+// ("动手环节"). Reference solution: `git checkout main` (src/tools.ts).
 
 export type Tool = {
   description: string;
   run: (input: string) => Promise<string> | string;
 };
 
+// TODO 1: define two tools, each with a `description` (shown to the model) and a
+//         `run(input)` function.
+//   - get_weather: return a fake weather string for a city (offline/deterministic).
+//   - calculator:  evaluate a math expression.
+// The `description` is how the model learns the tool exists and how to call it,
+// e.g. "get current weather for a city, e.g. get_weather[altay]".
 export const tools: Record<string, Tool> = {
-  get_weather: {
-    description: "get current weather for a city, e.g. get_weather[altay]",
-    // A fake weather API so the workshop runs offline / deterministically.
-    run: (city: string) => {
-      const db: Record<string, string> = {
-        altay: "Snowy, -12C",
-        beijing: "Cloudy, 18C",
-        "san francisco": "Foggy, 15C",
-      };
-      return db[city.trim().toLowerCase()] ?? "Unknown city";
-    },
-  },
-
-  calculator: {
-    description: "evaluate a math expression, e.g. calculator[2 * (3 + 4)]",
-    // WARNING: Function()/eval-style evaluation is ONLY for a demo.
-    // Never evaluate untrusted input like this in production.
-    run: (input: string) => {
-      try {
-        return String(Function(`"use strict"; return (${input})`)());
-      } catch {
-        return `Error: cannot evaluate "${input}"`;
-      }
-    },
-  },
+  // ... copy the two tools here ...
 };
+
+// --- plumbing below: no need to change ---
 
 // Render the tool list for the system prompt so the model knows what it can call.
 export function toolDescriptions(): string {
