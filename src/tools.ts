@@ -2,7 +2,7 @@
 // The model itself only produces text; tools let it read the world and take actions.
 //
 // WORKSHOP: fill in the `tools` object below by copying from the Notion handbook
-// ("动手环节"). Reference solution: `git checkout main` (src/tools.ts).
+// (hands-on section). Reference solution: `git checkout main` (src/tools.ts).
 
 export type Tool = {
   description: string;

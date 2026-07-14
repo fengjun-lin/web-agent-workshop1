@@ -5,7 +5,7 @@
 // ...until the model produces a Final Answer.
 //
 // WORKSHOP: fill in the loop body (TODO 2) by copying from the Notion handbook
-// ("动手环节"). Reference solution: `git checkout main` (src/2-agent.ts).
+// (hands-on section). Reference solution: `git checkout main` (src/2-agent.ts).
 //
 // Run:  npm run step2
 
