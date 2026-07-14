@@ -25,6 +25,11 @@ export const tools: Record<string, Tool> = {
     // WARNING: Function()/eval-style evaluation is ONLY for a demo.
     // Never evaluate untrusted input like this in production.
     run: (input: string) => {
+      // Minimal guard: allow only digits, operators, parens, dots, spaces.
+      // Not a real sandbox, but stops the model from running arbitrary code.
+      if (!/^[\d+\-*/().\s]+$/.test(input)) {
+        return `Error: invalid expression "${input}"`;
+      }
       try {
         return String(Function(`"use strict"; return (${input})`)());
       } catch {
