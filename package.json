@@ -1,0 +1,20 @@
+{
+  "name": "agent-workshop",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Hands-on workshop: build a minimal ReAct agent from scratch, framework-free.",
+  "scripts": {
+    "step1": "tsx --env-file=.env src/1-single-call.ts",
+    "step2": "tsx --env-file=.env src/2-agent.ts",
+    "exercise": "tsx --env-file=.env src/3-exercise.ts",
+    "perf-demo": "tsx --env-file=.env perf-demo/agent.ts",
+    "perf-demo:chat": "tsx --env-file=.env perf-demo/chat.ts"
+  },
+  "dependencies": {
+    "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  }
+}
